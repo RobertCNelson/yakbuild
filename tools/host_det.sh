@@ -409,10 +409,6 @@ debian_regs () {
 
 		#Future Debian Code names:
 		case "${deb_distro}" in
-		bullseye)
-			#11 bullseye: https://wiki.debian.org/DebianBullseye
-			deb_distro="sid"
-			;;
 		bookworm)
 			#12 bookworm:
 			deb_distro="sid"
@@ -422,11 +418,12 @@ debian_regs () {
 		#https://wiki.ubuntu.com/Releases
 		unset error_unknown_deb_distro
 		case "${deb_distro}" in
-		jessie|stretch|buster|sid)
+		jessie|stretch|buster|bullseye|sid)
 			#https://wiki.debian.org/LTS
 			#8 jessie: https://wiki.debian.org/DebianJessie
 			#9 stretch: https://wiki.debian.org/DebianStretch
 			#10 buster: https://wiki.debian.org/DebianBuster
+			#11 bullseye: https://wiki.debian.org/DebianBullseye
 			unset warn_eol_distro
 			;;
 		squeeze|wheezy)
@@ -454,18 +451,7 @@ debian_regs () {
 			#16.04 xenial: (EOL: April 2021) lts: xenial -> bionic
 			unset warn_eol_distro
 			;;
-		utopic|vivid|wily)
-			#14.10 utopic: (EOL: July 23, 2015)
-			#15.04 vivid: (EOL: February 4, 2016)
-			#15.10 wily: (EOL: July 28, 2016)
-			warn_eol_distro=1
-			stop_pkg_search=1
-			;;
-		trusty)
-			#14.04 trusty: (EOL: April 2019) lts: trusty -> xenial
-			unset warn_eol_distro
-			;;
-		hardy|lucid|maverick|natty|oneiric|precise|quantal|raring|saucy)
+		hardy|lucid|maverick|natty|oneiric|precise|quantal|raring|saucy|trusty|utopic|vivid|wily)
 			#8.04 hardy: (EOL: May 2013) lts: hardy -> lucid
 			#10.04 lucid: (EOL: April 2015) lts: lucid -> precise
 			#10.10 maverick: (EOL: April 10, 2012)
@@ -475,6 +461,10 @@ debian_regs () {
 			#12.10 quantal: (EOL: May 16, 2014)
 			#13.04 raring: (EOL: January 27, 2014)
 			#13.10 saucy: (EOL: July 17, 2014)
+			#14.04 trusty: (EOL: April 25, 2019) lts: trusty -> xenial
+			#14.10 utopic: (EOL: July 23, 2015)
+			#15.04 vivid: (EOL: February 4, 2016)
+			#15.10 wily: (EOL: July 28, 2016)
 			warn_eol_distro=1
 			stop_pkg_search=1
 			;;
