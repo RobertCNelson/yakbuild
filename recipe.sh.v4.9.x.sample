@@ -28,4 +28,4 @@ toolchain="gcc_linaro_gnueabihf_6"
 #toolchain="gcc_arm_aarch64_gnu_9"
 
 #Kernel/Build
-kernel_tag="4.9.105-ti-r114"
+kernel_tag="4.9.147-ti-r121"

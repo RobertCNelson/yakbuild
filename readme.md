@@ -25,19 +25,22 @@ Step 3a: Enable toolchain:
 #toolchain="gcc_linaro_eabi_5"
 #toolchain="gcc_linaro_eabi_6"
 #toolchain="gcc_linaro_eabi_7"
-#toolchain="gcc_linaro_gnueabi_4_6"
+#toolchain="gcc_arm_eabi_8"
+#toolchain="gcc_arm_eabi_9"
 #toolchain="gcc_linaro_gnueabihf_4_7"
 #toolchain="gcc_linaro_gnueabihf_4_8"
 #toolchain="gcc_linaro_gnueabihf_4_9"
 #toolchain="gcc_linaro_gnueabihf_5"
 #toolchain="gcc_linaro_gnueabihf_6"
 #toolchain="gcc_linaro_gnueabihf_7"
+#toolchain="gcc_arm_gnueabihf_8"
+#toolchain="gcc_arm_gnueabihf_9"
 ```
 
 Step 3b: Enable choosen kernel_tag (uname -r)
 
 ```
-kernel_tag="4.4.91-ti-r137"
+kernel_tag="4.14.108-ti-r127"
 ```
 
 Step 4: build
