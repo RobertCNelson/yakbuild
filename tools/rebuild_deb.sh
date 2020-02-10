@@ -82,14 +82,20 @@ make_deb () {
 	build_opts="${build_opts} KDEB_SOURCENAME=linux-upstream"
 
 	echo "-----------------------------"
-	if grep -q bindeb-pkg "${DIR}/KERNEL/scripts/package/Makefile"; then
+	if grep -q KBUILD_PKG_ROOTCMD "${DIR}/KERNEL/scripts/package/Makefile"; then
 		echo "make ${build_opts} CROSS_COMPILE="${CC}" bindeb-pkg"
 		echo "-----------------------------"
-		fakeroot make ${build_opts} CROSS_COMPILE="${CC}" bindeb-pkg
+		make ${build_opts} CROSS_COMPILE="${CC}" bindeb-pkg
 	else
-		echo "make ${build_opts} CROSS_COMPILE="${CC}" deb-pkg"
-		echo "-----------------------------"
-		fakeroot make ${build_opts} CROSS_COMPILE="${CC}" deb-pkg
+		if grep -q bindeb-pkg "${DIR}/KERNEL/scripts/package/Makefile"; then
+			echo "fakeroot make ${build_opts} CROSS_COMPILE="${CC}" bindeb-pkg"
+			echo "-----------------------------"
+			fakeroot make ${build_opts} CROSS_COMPILE="${CC}" bindeb-pkg
+		else
+			echo "fakeroot make ${build_opts} CROSS_COMPILE="${CC}" deb-pkg"
+			echo "-----------------------------"
+			fakeroot make ${build_opts} CROSS_COMPILE="${CC}" deb-pkg
+		fi
 	fi
 
 	#old
