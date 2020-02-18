@@ -1,7 +1,7 @@
-From 4bd1fc04c72f00d0bb6e8764b1e8a239e4f79162 Mon Sep 17 00:00:00 2001
+From ca0a5ba1a850aefe8f930d4b833d2f2e99f56293 Mon Sep 17 00:00:00 2001
 From: Romain Izard <romain.izard.pro@gmail.com>
 Date: Fri, 27 Jun 2014 10:51:07 +0200
-Subject: [PATCH 2/2] mmc: Allow forward compatibility for eMMC
+Subject: [PATCH] mmc: Allow forward compatibility for eMMC
 
 As stated by the eMMC 5.0 specification, a chip should not be rejected
 only because of the revision stated in the EXT_CSD_REV field of the
@@ -17,10 +17,10 @@ Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
  1 file changed, 5 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/mmc/core/mmc.c b/drivers/mmc/core/mmc.c
-index 1ce861a9..337f6675 100644
+index 878c8e9d..46e54c55 100644
 --- a/drivers/mmc/core/mmc.c
 +++ b/drivers/mmc/core/mmc.c
-@@ -291,13 +291,12 @@ static int mmc_read_ext_csd(struct mmc_card *card, u8 *ext_csd)
+@@ -296,13 +296,12 @@ static int mmc_read_ext_csd(struct mmc_card *card, u8 *ext_csd)
  		}
  	}
  
