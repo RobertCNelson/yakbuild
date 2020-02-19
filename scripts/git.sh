@@ -265,10 +265,10 @@ git_shallow () {
 # disable "uniform compression" for wheezy package
 dpkg_for_wheezy () {
 	# only disable for 3.8.13 kernels
-	kernel_base=$(echo ${kernel_tag} | awk -F'-' '{print $1}')
-	if [ "x${kernel_base}" != "x3.8.13" ] ; then
-		return
-	fi
+#	kernel_base=$(echo ${kernel_tag} | awk -F'-' '{print $1}')
+#	if [ "x${kernel_base}" != "x3.8.13" ] ; then
+#		return
+#	fi
 	# only disable for dpkg 1.19.0 or newer
 	dpkg_version_current=$(dpkg-query -f='${Version}' --show dpkg)
 	dpkg_version_uniform_compression="1.19.0"
