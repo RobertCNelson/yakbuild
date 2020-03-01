@@ -25,6 +25,13 @@ git_bin=$(which git)
 
 mkdir -p "${DIR}/deploy/"
 
+config_use_lzo_if_no_lz4 () {
+	if [ ! -f /usr/bin/lz4 ] ; then
+		sed -i -e 's:CONFIG_KERNEL_LZ4=y:# CONFIG_KERNEL_LZ4 is not set:g' .config
+		sed -i -e 's:# CONFIG_KERNEL_LZO is not set:CONFIG_KERNEL_LZO=y:g' .config
+	fi
+}
+
 patch_kernel () {
 	cd "${DIR}/KERNEL" || exit
 
@@ -48,6 +55,8 @@ copy_defconfig () {
 		make ARCH=${KERNEL_ARCH} CROSS_COMPILE="${CC}" "${config}"
 		cp -v .config "${DIR}/patches/ref_${config}"
 		cp -v "${DIR}/patches/defconfig" .config
+		config_use_lzo_if_no_lz4
+		make ARCH=${KERNEL_ARCH} CROSS_COMPILE="${CC}" oldconfig
 	else
 		make ARCH=${KERNEL_ARCH} CROSS_COMPILE="${CC}" rcn-ee_defconfig
 	fi
