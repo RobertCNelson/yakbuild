@@ -321,6 +321,7 @@ debian_regs () {
 			;;
 		debbie)
 			#LMDE 4
+			#http://packages.linuxmint.com/index.php
 			deb_distro="buster"
 			;;
 		debian)
@@ -424,14 +425,15 @@ debian_regs () {
 			#http://packages.linuxmint.com/index.php
 			deb_distro="focal"
 			;;
+		uma)
+			#20.2
+			#http://packages.linuxmint.com/index.php
+			deb_distro="focal"
+			;;
 		esac
 
 		#Future Debian Code names:
 		case "${deb_distro}" in
-		bookworm)
-			#12 bookworm: https://wiki.debian.org/DebianBookworm
-			deb_distro="sid"
-			;;
 		trixie)
 			#13 trixie: https://wiki.debian.org/DebianTrixie
 			deb_distro="sid"
@@ -441,12 +443,13 @@ debian_regs () {
 		#https://wiki.ubuntu.com/Releases
 		unset error_unknown_deb_distro
 		case "${deb_distro}" in
-		jessie|stretch|buster|bullseye|sid)
+		jessie|stretch|buster|bullseye|bookworm|sid)
 			#https://wiki.debian.org/LTS
 			#8 jessie: https://wiki.debian.org/DebianJessie
 			#9 stretch: https://wiki.debian.org/DebianStretch
 			#10 buster: https://wiki.debian.org/DebianBuster
 			#11 bullseye: https://wiki.debian.org/DebianBullseye
+			#12 bookworm: https://wiki.debian.org/DebianBookworm
 			unset warn_eol_distro
 			;;
 		squeeze|wheezy)
@@ -565,7 +568,7 @@ debian_regs () {
 	fi
 
 	if [ "${deb_pkgs}" ] ; then
-		echo "Debian/Ubuntu/Mint: missing dependencies, please install:"
+		echo "Debian/Ubuntu/Mint: missing dependencies, please install these packages via:"
 		echo "-----------------------------"
 		if [ "${warn_dpkg_ia32}" ] ; then
 			echo "sudo dpkg --add-architecture i386"
